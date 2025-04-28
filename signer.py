@@ -1,9 +1,12 @@
 import base64
 import datetime
 import rsa
+import os
 
-# Load private key
-with open("private_key.pem", "rb") as key_file:
+# Dynamically resolve full path to private_key.pem
+PRIVATE_KEY_PATH = os.path.expanduser("~/private_key.pem")
+
+with open(PRIVATE_KEY_PATH, "rb") as key_file:
     PRIVATE_KEY = rsa.PrivateKey.load_pkcs1(key_file.read())
 
 # CloudFront Key Pair ID
